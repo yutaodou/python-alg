@@ -1,1 +1,1 @@
-# Algorithm practice in Python
+## 算法练习 from《算法精粹: 经典计算机科学问题的Python实现》
