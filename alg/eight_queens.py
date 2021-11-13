@@ -93,10 +93,6 @@ class QueenConstraint(Constraint):
         return positions
 
 
-# const = QueenConstraint(8, 8)
-# print(const.territory(Position(0, 0)))
-
-
 def print_solution(rows: int, cols: int, solution: Dict[int, Position]):
     flipped = {v: k for k, v in solution.items()}
     for row in range(rows):
@@ -110,16 +106,13 @@ def print_solution(rows: int, cols: int, solution: Dict[int, Position]):
 
 
 if __name__ == "__main__":
-    rows, cols = 8, 8
-    variables = list(range(8))
-    positions = [Position(x, y) for x in range(rows) for y in range(cols)]
+    rows, cols, num_queens = 8, 8, 8
 
+    variables = list(range(num_queens))
+    positions = [Position(x, y) for x in range(rows) for y in range(cols)]
     domains = dict((v, positions) for v in variables)
 
     csp = CSP(variables, domains, QueenConstraint(rows, cols))
 
     solution = csp.backtracking_search({})
-    if solution:
-        print_solution(rows, cols, solution)
-    else:
-        print("no solution")
+    print_solution(rows, cols, solution) if solution else print("no solution")
