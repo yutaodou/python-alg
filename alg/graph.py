@@ -8,12 +8,18 @@ class Vertex:
     name: str
     edges: List[Edge] = field(default_factory=list)
 
+    def __repr__(self):
+        return self.name
+
 
 @dataclass
 class Edge:
     start: Vertex
     end: Vertex
     weight: float = 0
+
+    def __repr__(self) -> str:
+        return f"{self.start.name} -> {self.end.name}"
 
 
 class Graph:
