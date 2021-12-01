@@ -4,7 +4,7 @@ from typing import List, Tuple
 def bubble_sort(input: List[int]) -> List[int]:
     temp = None
     for i in reversed(range(len(input))):
-        for j in range(len(input) - i):
+        for j in range(i):
             if j + 1 >= len(input):
                 continue
 
@@ -105,4 +105,4 @@ if __name__ == "__main__":
     # print(bubble_sort(a))
     # print(insertion_sort(a))
     # print(merge_sort(a))
-    print(quick_sort(a))
+    # print(quick_sort(a))
