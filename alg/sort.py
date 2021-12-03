@@ -43,27 +43,35 @@ def insertion_sort(input: List[int]) -> List[int]:
 
 
 def quick_sort(input: List[int]) -> List[int]:
-    def partition(arr: List[int]) -> Tuple[List[int], int, List[int]]:
-        p = arr[0]
-        left, right = [], []
+    def sort(start: int, end: int):
+        if start >= end:
+            return
 
-        for idx in range(1, len(arr)):
-            value = arr[idx]
-            if value > p:
-                right.append(value)
+        middle = input[end]
+        left = 0
+        right = end - 1
+
+        def swap(left, right):
+            temp = input[left]
+            input[left] = input[right]
+            input[right] = temp
+
+        while left < right:
+            if input[left] <= middle:
+                left += 1
+            elif input[right] >= middle:
+                right -= 1
             else:
-                left.append(value)
+                swap(left, right)
 
-        return (left, p, right)
+        if input[left] >= middle:
+            swap(left, end)
 
-    if len(input) < 2:
-        return input
+        sort(0, left - 1)
+        sort(left + 1, end)
 
-    left, p, right = partition(input)
-    left = quick_sort(left)
-    right = quick_sort(right)
-
-    return [*left, p, *right]
+    sort(0, len(input) - 1)
+    return input
 
 
 def merge_sort(input: List[int]) -> List[int]:
@@ -106,3 +114,4 @@ if __name__ == "__main__":
     # print(insertion_sort(a))
     # print(merge_sort(a))
     # print(quick_sort(a))
+    print(quick_sort(a))
